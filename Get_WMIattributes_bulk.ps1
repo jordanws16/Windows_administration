@@ -1,0 +1,2 @@
+﻿$credential=Get-Credential
+$hosts= Get-ADComputer -Filter "name -like '*'" -Server "Domain"|foreach{(invoke-command -scriptblock {Get-CimInstance -ClassName Win32_OperatingSystem -ComputerName $_.dnshostname} -ArgumentList $_ -Credential $credential)}
